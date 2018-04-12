@@ -3,11 +3,14 @@ package com.viathink.flowable.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.viathink.flowable.dto.UserForm;
 import com.viathink.flowable.service.UserService;
 import org.flowable.idm.api.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,5 +34,11 @@ public class UserController {
         }).collect(Collectors.toCollection(JSONArray:: new));
         // JSONArray jsonArray = JSON.parseArray(JSON.toJSONString(userService.findAllUser()));
         return jsonArray;
+    }
+    @PostMapping(value = "/users", consumes = {MediaType.APPLICATION_JSON_UTF8_VALUE}, produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
+    public JSONObject addUser(@Validated @RequestBody UserForm userForm, BindingResult bindingResult) {
+        System.out.println("bindingResult = [" + bindingResult.getAllErrors() + "]");
+        System.out.println("jsonObject = [" + userForm.toString() + "]");
+        return JSONObject.parseObject(JSON.toJSONString(userForm));
     }
 }

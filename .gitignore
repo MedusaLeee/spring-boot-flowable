@@ -243,3 +243,5 @@ target/
 
 # Scala IDE specific (Scala & Java development for Eclipse)
 .mvn
+mvnw
+mvnw.cmd
