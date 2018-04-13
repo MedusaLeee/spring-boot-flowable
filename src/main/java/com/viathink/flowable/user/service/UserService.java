@@ -1,4 +1,4 @@
-package com.viathink.flowable.service;
+package com.viathink.flowable.user.service;
 
 
 import org.flowable.idm.api.User;

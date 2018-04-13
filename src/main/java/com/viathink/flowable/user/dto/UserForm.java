@@ -1,4 +1,4 @@
-package com.viathink.flowable.dto;
+package com.viathink.flowable.user.dto;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;

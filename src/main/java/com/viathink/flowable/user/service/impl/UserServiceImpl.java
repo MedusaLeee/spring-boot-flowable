@@ -1,6 +1,6 @@
-package com.viathink.flowable.service.impl;
+package com.viathink.flowable.user.service.impl;
 
-import com.viathink.flowable.service.UserService;
+import com.viathink.flowable.user.service.UserService;
 import org.flowable.engine.IdentityService;
 import org.flowable.idm.api.User;
 import org.springframework.beans.factory.annotation.Autowired;

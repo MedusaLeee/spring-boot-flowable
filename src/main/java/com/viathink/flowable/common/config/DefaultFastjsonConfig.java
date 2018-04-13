@@ -1,4 +1,4 @@
-package com.viathink.flowable.config;
+package com.viathink.flowable.common.config;
 
 import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;

@@ -1,4 +1,4 @@
-package com.viathink.flowable.custom.response;
+package com.viathink.flowable.common.response;
 
 import lombok.Data;
 

@@ -1,10 +1,10 @@
-package com.viathink.flowable.controller;
+package com.viathink.flowable.user.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.viathink.flowable.dto.UserForm;
-import com.viathink.flowable.service.UserService;
+import com.viathink.flowable.user.dto.UserForm;
+import com.viathink.flowable.user.service.UserService;
 import org.flowable.idm.api.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

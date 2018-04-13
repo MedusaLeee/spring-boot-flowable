@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package com.viathink.flowable.core.flowable;
+package com.viathink.flowable.common.flowable;
 
 import org.flowable.bpmn.model.*;
 import org.flowable.bpmn.model.Process;

@@ -1,6 +1,6 @@
-package com.viathink.flowable.config;
+package com.viathink.flowable.common.config;
 
-import com.viathink.flowable.core.flowable.DefaultProcessDiagramGenerator;
+import com.viathink.flowable.common.flowable.DefaultProcessDiagramGenerator;
 import org.flowable.spring.SpringProcessEngineConfiguration;
 import org.flowable.spring.boot.EngineConfigurationConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
