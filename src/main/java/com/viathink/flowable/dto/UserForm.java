@@ -6,11 +6,11 @@ import javax.validation.constraints.*;
 
 @Data
 public class UserForm {
-    @NotBlank(message = "id不能为空")
+    @NotBlank(message = "不能为空")
     private String id;
-    @NotBlank(message = "name不能为空")
-    @Length(min = 2, max = 30)
+    @NotBlank(message = "不能为空")
+    @Length(min = 2, max = 30, message = "最小为2，最长30")
     private String name;
-    @Email(message = "email格式不对")
+    @Email(message = "格式不对")
     private String email;
 }

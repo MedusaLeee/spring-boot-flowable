@@ -5,13 +5,14 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
 @ComponentScan
 @EnableAutoConfiguration
 @EnableTransactionManagement
+@EnableWebMvc
 public class SpringBootFlowableApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(SpringBootFlowableApplication.class, args);
     }
