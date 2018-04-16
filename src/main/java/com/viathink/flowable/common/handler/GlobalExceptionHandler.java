@@ -1,5 +1,6 @@
 package com.viathink.flowable.common.handler;
 
+import com.viathink.flowable.common.exception.CommonException;
 import com.viathink.flowable.common.response.ErrorResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,11 +35,20 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), field + error);
         return new ResponseEntity<Object>(errorResponse, HttpStatus.BAD_REQUEST);
     }
+    
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<?> handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
         logger.warn("请求body格式错误: ", e);
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), "请求body格式错误");
+        return new ResponseEntity<Object>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(CommonException.class)
+    public ResponseEntity<?> handleCommonException(CommonException e) {
+        logger.error("业务错误: ", e);
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), e.getMessage());
         return new ResponseEntity<Object>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
