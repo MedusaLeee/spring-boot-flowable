@@ -1,6 +1,7 @@
 package com.viathink.flowable.common.config;
 
 import com.viathink.flowable.common.flowable.DefaultProcessDiagramGenerator;
+import org.flowable.engine.ProcessEngineConfiguration;
 import org.flowable.spring.SpringProcessEngineConfiguration;
 import org.flowable.spring.boot.EngineConfigurationConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,6 @@ public class FlowableConfig implements EngineConfigurationConfigurer<SpringProce
         springProcessEngineConfiguration.setActivityFontName("宋体");
         springProcessEngineConfiguration.setLabelFontName("宋体");
         springProcessEngineConfiguration.setProcessDiagramGenerator(new DefaultProcessDiagramGenerator());
+        springProcessEngineConfiguration.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
     }
 }
