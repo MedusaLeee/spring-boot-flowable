@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -31,6 +32,13 @@ public class GlobalExceptionHandler {
         String field = fieldError.getField();
         String error = fieldError.getDefaultMessage();
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), field + error);
+        return new ResponseEntity<Object>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<?> handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
+        logger.warn("请求body格式错误: ", e);
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), "请求body格式错误");
         return new ResponseEntity<Object>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
