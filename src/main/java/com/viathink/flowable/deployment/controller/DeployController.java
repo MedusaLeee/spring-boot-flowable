@@ -9,12 +9,15 @@ import org.flowable.engine.repository.Deployment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 @RestController
 public class DeployController {
@@ -40,5 +43,21 @@ public class DeployController {
         } catch (XMLException e) {
             throw new CommonException("bpmn格式错误");
         }
+    }
+
+    @GetMapping(value = "/deployments/{deploymentId}/png", produces = {MediaType.IMAGE_PNG_VALUE})
+    public void getDeploymentBpmn(HttpServletResponse response, @PathVariable String deploymentId) throws IOException {
+
+        InputStream in = deploymentService.getDeploymentBpmnStream(deploymentId);
+        OutputStream os = response.getOutputStream();
+        response.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.IMAGE_PNG_VALUE);
+        byte[] b = new byte[1024];
+        int len = -1;
+        while ((len = in.read(b, 0, 1024)) != -1) {
+            os.write(b, 0, len);
+        }
+        in.close();
+        os.flush();
+        os.close();
     }
 }

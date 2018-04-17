@@ -47,7 +47,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(CommonException.class)
     public ResponseEntity<?> handleCommonException(CommonException e) {
-        logger.error("业务错误: ", e);
+        logger.error("业务错误: ", e.getMessage());
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), e.getMessage());
         return new ResponseEntity<Object>(errorResponse, HttpStatus.BAD_REQUEST);
     }
